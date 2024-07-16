@@ -18,7 +18,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const { products } = useContext(ProductContext);
+  const { products, filterProducts } = useContext(ProductContext);
   const { login, logout, isAuth } = useContext(AuthContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const uniqueCategories = Array.from(
@@ -27,6 +27,10 @@ export default function Navbar() {
 
   const handleLogin = () => {
     login("your-jwt-token-here");
+  };
+
+  const handleSearch = (e) => {
+    filterProducts(e.target.value);
   };
 
   return (
@@ -84,11 +88,17 @@ export default function Navbar() {
             </PopoverPanel>
           </Popover>
         </PopoverGroup>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden items-center lg:flex lg:flex-1 lg:justify-end">
+          <input
+            type="text"
+            placeholder="Search products..."
+            onChange={handleSearch}
+            className="px-4 py-2 border border-gray-300 rounded-md"
+          />
           {isAuth ? (
             <button
               onClick={logout}
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-sm font-semibold leading-6 text-gray-900 ml-4"
               to="/"
             >
               Log out <span aria-hidden="true">&rarr;</span>
@@ -96,7 +106,7 @@ export default function Navbar() {
           ) : (
             <Link
               to="/login"
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-sm font-semibold leading-6 text-gray-900 ml-4"
             >
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
