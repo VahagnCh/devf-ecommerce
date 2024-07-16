@@ -30,12 +30,11 @@ export default function Navbar() {
   const displaycategories = uniqueCategories.slice(0, displayfive)
 
   return (
-    <header className="bg-white">
+    <header className="bg-[#96C9F4]">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="flex lg:flex-1">
+        <div className="flex lg:w-[60px]">
           <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <img className="h-8 w-auto" src="https://img.icons8.com/officel/80/logo.png" alt="pearlogo" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -50,7 +49,7 @@ export default function Navbar() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+            <PopoverButton className="flex items-center gap-x-1 text-sm font-bold leading-6 text-gray-900">
               Categories
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </PopoverButton>
@@ -97,8 +96,7 @@ export default function Navbar() {
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                className="h-8 w-auto"src="https://img.icons8.com/officel/80/logo.png"
                 alt=""
               />
             </a>
@@ -124,7 +122,7 @@ export default function Navbar() {
                           aria-hidden="true"
                         />
                       </DisclosureButton>
-                      <DisclosurePanel className="mt-2 space-y-2">
+                      {/* <DisclosurePanel className="mt-2 space-y-2">
                         {[...products, ...callsToAction].map((item) => (
                           <DisclosureButton
                             key={item.name}
@@ -135,7 +133,7 @@ export default function Navbar() {
                             {item.name}
                           </DisclosureButton>
                         ))}
-                      </DisclosurePanel>
+                      </DisclosurePanel> */}
                     </>
                   )}
                 </Disclosure>
