@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { loginUserService } from '@/services/userServices'
-import { Productcontext } from '@/context/Productcontext'
+import loginUserService from '../../services/userServices'
+import { ProductContext } from '../../context/Productcontext'
 
 
 const Login = () => {
-  const { login } = Productcontext()
+  const { login } = ProductContext()
   const navigate = useNavigate()
 
   const {

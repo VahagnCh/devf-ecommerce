@@ -10,7 +10,7 @@ const getMeUserService = (jwt) => axios.get(`${BASE_URL}/users/me`, {
   }
 })
 
-export {
+export default {
   registerUserService,
   loginUserService,
   getMeUserService

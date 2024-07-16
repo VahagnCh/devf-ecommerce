@@ -1,10 +1,10 @@
 import Singlecard from "../atoms/Singlecard"
-import { Productcontext } from "../../context/Productcontext";
+import { ProductContext } from "../../context/Productcontext";
 import { useContext } from "react";
 
 // "id", "product_name" "description" "price" "category" "brand" "image"
 function Cardlayout() { 
-    const {products} = useContext(Productcontext)
+    const {products} = useContext(ProductContext)
         return (
           <div>
              <Singlecard products={products} />
