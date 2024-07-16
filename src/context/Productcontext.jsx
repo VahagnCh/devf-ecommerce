@@ -9,7 +9,7 @@ export const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("https://ecommerce-json-jwt.onrender.com/items") 
+      .get("http://localhost:3000/items") 
       .then((response) => {
         setProducts(response.data);
         setFilteredProducts(response.data); //filter productos
