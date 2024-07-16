@@ -6,21 +6,20 @@ import LoginPage from "./pages/LoginPage";
 import { AuthProvider } from "./context/Authcontext";
 import DashboardPage from "./pages/DashboardPage";
 
-
 function App() {
   return (
-    <AuthProvider>
-      <ProductProvider>
-        <Router>
+    <Router>
+      <AuthProvider>
+        <ProductProvider>
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
           </Routes>
-        </Router>
-      </ProductProvider>
-    </AuthProvider>
+        </ProductProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

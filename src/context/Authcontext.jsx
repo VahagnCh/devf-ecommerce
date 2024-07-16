@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
@@ -6,6 +7,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [userPayload, setUserPayload] = useState(null);
+  const navigate = useNavigate();
 
   const login = (token) => {
     if (token) {
@@ -20,6 +22,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     setIsAuth(false);
     setUserPayload(null);
+    navigate("/");
   };
 
   useEffect(() => {
