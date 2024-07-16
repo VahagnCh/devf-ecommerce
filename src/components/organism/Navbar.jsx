@@ -18,18 +18,19 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const { products } = useContext(ProductContext);
+  const { products, filterProducts } = useContext(ProductContext);
   const { login, logout, isAuth } = useContext(AuthContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const uniqueCategories = Array.from(
     new Set(products.map((product) => product.category))
   );
-  const displayFive = 5;
-  const displayCategories = uniqueCategories.slice(0, displayFive);
 
   const handleLogin = () => {
-    // Replace 'your-jwt-token-here' with a real JWT token from your authentication process
     login("your-jwt-token-here");
+  };
+
+  const handleSearch = (e) => {
+    filterProducts(e.target.value);
   };
 
   return (
@@ -71,8 +72,8 @@ export default function Navbar() {
               transition
               className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
             >
-              <div className="p-4">
-                {displayCategories.map((category) => (
+              <div className="p-4 max-h-64 overflow-y-auto">
+                {uniqueCategories.map((category) => (
                   <div
                     key={category}
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
@@ -84,15 +85,20 @@ export default function Navbar() {
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50"></div>
             </PopoverPanel>
           </Popover>
         </PopoverGroup>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden items-center lg:flex lg:flex-1 lg:justify-end">
+          <input
+            type="text"
+            placeholder="Search products..."
+            onChange={handleSearch}
+            className="px-4 py-2 border border-gray-300 rounded-md"
+          />
           {isAuth ? (
             <button
               onClick={logout}
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-sm font-semibold leading-6 text-gray-900 ml-4"
               to="/"
             >
               Log out <span aria-hidden="true">&rarr;</span>
@@ -100,7 +106,7 @@ export default function Navbar() {
           ) : (
             <Link
               to="/login"
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-sm font-semibold leading-6 text-gray-900 ml-4"
             >
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
