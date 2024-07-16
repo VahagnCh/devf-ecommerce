@@ -33,6 +33,10 @@ export default function Navbar() {
     filterProducts(e.target.value);
   };
 
+  const categorySelect = (category) => {
+    filterProducts("",category)
+  }
+
   return (
     <header className="bg-[#96C9F4]">
       <nav
@@ -40,7 +44,7 @@ export default function Navbar() {
         aria-label="Global"
       >
         <div className="flex lg:w-[60px]">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <img
               className="h-8 w-auto"
               src="https://img.icons8.com/officel/80/logo.png"
@@ -77,6 +81,7 @@ export default function Navbar() {
                   <div
                     key={category}
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                    onClick={() => categorySelect(category)}
                   >
                     <div className="flex-auto">
                       {category}
