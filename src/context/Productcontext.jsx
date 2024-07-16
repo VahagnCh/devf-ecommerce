@@ -19,15 +19,15 @@ export const ProductProvider = ({ children }) => {
       });
   }, []);
 
-  const filterProducts = (searchTerm) => {
-    if (!searchTerm) {
-      setFilteredProducts(products);
-    } else {
-      const filtered = products.filter((product) =>
-        product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredProducts(filtered);
+  const filterProducts = (searchTerm, category) => {
+    let filtered = products;
+    if (searchTerm) {
+      filtered = filtered.filter ((products) => products.product_name.toLowerCase().includes(searchTerm.toLowerCase()))
+    } 
+    if (category) {
+      filtered = filtered.filter ((products) => products.category === category) 
     }
+    setFilteredProducts(filtered);
   };
 
   return (
