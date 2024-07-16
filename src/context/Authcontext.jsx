@@ -1,4 +1,4 @@
-import  { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
@@ -8,10 +8,12 @@ const AuthProvider = ({ children }) => {
   const [userPayload, setUserPayload] = useState(null);
 
   const login = (token) => {
-    localStorage.setItem("token", token);
-    const payload = jwtDecode(token);
-    setIsAuth(true);
-    setUserPayload(payload);
+    if (token) {
+      localStorage.setItem("token", token);
+      const payload = jwtDecode(token);
+      setIsAuth(true);
+      setUserPayload(payload);
+    }
   };
 
   const logout = () => {
@@ -23,9 +25,14 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      const payload = jwtDecode(token);
-      setIsAuth(true);
-      setUserPayload(payload);
+      try {
+        const payload = jwtDecode(token);
+        setIsAuth(true);
+        setUserPayload(payload);
+      } catch (error) {
+        console.error("Invalid token:", error);
+        logout();
+      }
     }
   }, []);
 

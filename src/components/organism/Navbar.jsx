@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Dialog,
   DialogPanel,
@@ -92,16 +93,17 @@ export default function Navbar() {
             <button
               onClick={logout}
               className="text-sm font-semibold leading-6 text-gray-900"
+              to="/"
             >
               Log out <span aria-hidden="true">&rarr;</span>
             </button>
           ) : (
-            <button
-              onClick={handleLogin}
+            <Link
+              to="/login"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Log in <span aria-hidden="true">&rarr;</span>
-            </button>
+            </Link>
           )}
         </div>
       </nav>
@@ -141,12 +143,12 @@ export default function Navbar() {
                     Log out
                   </button>
                 ) : (
-                  <button
-                    onClick={handleLogin}
+                  <Link
+                    to="/login"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Log in
-                  </button>
+                  </Link>
                 )}
               </div>
             </div>
